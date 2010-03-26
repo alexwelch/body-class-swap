@@ -19,3 +19,7 @@ Then simply initialize the classSwapper();
 		$('#font_size').classSwapper();
 	});
 </script>
+
+Helpful Notes
+--------------
+* if you are using the cookie plugin and saving the state make sure you give your container an id as that is what is used for the name of the cookie

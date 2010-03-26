@@ -35,7 +35,8 @@
 		
 		// check for body_class cookie
 		if($.cookie) {
-			var body_class = $.cookie('body_class');		
+			cookie_name = $links_container.attr('id');
+			var body_class = $.cookie(cookie_name);		
 			if(body_class) {
 				var body_class = body_class
 				target = $links_container.find('a[href~="#' + body_class + '"]');
@@ -48,13 +49,15 @@
 		$links_container.click(function(e) {	
 			var target = e.target
 			var $target = $(target);
+			//fixme: do this a better way
 			var $parent = $target.closest('div');
 							
 			if(target.nodeName === 'A') {
 				var body_class = $target.attr('href').toLink();				
 				$target_container.switchClass($parent, body_class, $target);										
-				if($.cookie) {
-					$.cookie('body_class', body_class);
+				if($.cookie) {				
+					var cookie_name = $parent.attr('id');					
+					$.cookie(cookie_name, body_class);
 				}
 				return false;
 			}
