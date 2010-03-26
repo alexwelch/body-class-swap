@@ -33,13 +33,16 @@
 		$this = $(this);
 		$target_container = $(settings.target_container);
 		// check for font_size cookie
-		var font_size = $.cookie('font_size');		
-		if(font_size) {
-			var body_class = font_size
-			target = $this.find('a[href~="#' + font_size + '"]');
-			var $target = $(target)				
-			$target_container.switchClass($this, body_class, $target);
+		if($.cookie) {
+			var font_size = $.cookie('font_size');		
+			if(font_size) {
+				var body_class = font_size
+				target = $this.find('a[href~="#' + font_size + '"]');
+				var $target = $(target)				
+				$target_container.switchClass($this, body_class, $target);
+			}
 		}
+		
 		
 		$this.click(function(e) {	
 			var target = e.target
@@ -48,7 +51,9 @@
 			if(target.nodeName === 'A') {
 				var body_class = $target.attr('href').toLink();				
 				$target_container.switchClass($this, body_class, $target);										
-				$.cookie('font_size', body_class);
+				if($.cookie) {
+					$.cookie('font_size', body_class);
+				}
 				return false;
 			}
 		});
