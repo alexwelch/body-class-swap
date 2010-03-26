@@ -1,4 +1,4 @@
-// bodyClassSwitch v .01 for jQuery 1.3
+// body-class-swap v .01 for jQuery 1.3
 // c) 2010 Alex Welch - www.alexwelch.com - me@alexwelch.com
 // Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
  
