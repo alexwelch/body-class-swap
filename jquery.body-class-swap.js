@@ -19,7 +19,7 @@
 		var body_classes = getTargetClasses($(container).find('a')).join(' ');
 		
 		container.find('a').removeClass(current_class);
-		target.addClass(current_class);
+		target.addClass(current_class);				
 		
 		$container.removeClass(body_classes);
 		$container.addClass(body_class);
@@ -30,29 +30,31 @@
 			target_container: 'body'	
 		}, options);
 		
-		$this = $(this);
+		$links_container = $(this);
 		$target_container = $(settings.target_container);
-		// check for font_size cookie
+		
+		// check for body_class cookie
 		if($.cookie) {
-			var font_size = $.cookie('font_size');		
-			if(font_size) {
-				var body_class = font_size
-				target = $this.find('a[href~="#' + font_size + '"]');
+			var body_class = $.cookie('body_class');		
+			if(body_class) {
+				var body_class = body_class
+				target = $links_container.find('a[href~="#' + body_class + '"]');
 				var $target = $(target)				
-				$target_container.switchClass($this, body_class, $target);
+				$target_container.switchClass($links_container, body_class, $target);
 			}
 		}
 		
 		
-		$this.click(function(e) {	
+		$links_container.click(function(e) {	
 			var target = e.target
 			var $target = $(target);
+			var $parent = $target.closest('div');
 							
 			if(target.nodeName === 'A') {
 				var body_class = $target.attr('href').toLink();				
-				$target_container.switchClass($this, body_class, $target);										
+				$target_container.switchClass($parent, body_class, $target);										
 				if($.cookie) {
-					$.cookie('font_size', body_class);
+					$.cookie('body_class', body_class);
 				}
 				return false;
 			}
